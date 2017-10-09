@@ -1,0 +1,36 @@
+import java.util.*;
+ 
+ class node
+ {
+     int data;
+     node left , right;
+     node(int item)
+     {
+         data = item;
+         left = right = null;
+     }
+ }
+ class practice{
+     public static void main (String[] args) {
+         binaryTree bt = new binaryTree();
+         node root = new node(1);
+         root.left = new node(5);
+         root.right= new node(6);
+         root.left.left  = new node(12);
+         root.left.right = new node(7);
+         root.right.right = new node(18);
+         bt.deleteTree(root);
+         System.out.println("tree deleted");
+     }
+     
+ }
+ class binaryTree{
+     void deleteTree(node root)
+     {
+         if(root==null)
+           return ;
+         deleteTree(root.left);
+         deleteTree(root.right);
+         System.out.println(root.data);
+     }
+ }
