@@ -1,0 +1,67 @@
+import java.util.*;
+
+ class node{
+     char data;
+     node left , right;
+     node(char data)
+     {
+         this.data = data;
+         left = right = null;
+     }
+ }
+ class BT
+ {
+     node root;
+     int preindex = 0;
+  node buildTree(char[] in, char[] pre, int si, int ei)
+  {
+      if(si>ei)
+          return null;
+      node tnode = new node(pre[preindex++]);
+      //root = tnode;
+      if(si==ei)
+          return tnode;
+      int inIndex = search(in ,si , ei, tnode.data);
+      tnode.left = buildTree(in , pre, si , inIndex-1);
+      tnode.right = buildTree(in , pre , inIndex+1 , ei);
+      return tnode;
+
+  }
+  int search(char in[] , int si, int ei , char key)
+  {
+      int i;
+      for( i = si; i<=ei; i++)
+      {
+          if(in[i]==key)
+              return i;
+      }
+      return i;
+  }
+  void printPostorder(node x)
+  {
+      if(x==null)
+          return;
+      printPostorder(x.left);
+
+      printPostorder(x.right);
+
+      System.out.print(x.data+" ");
+
+  }
+
+ }
+ class main{
+     public static void main(String[] args) {
+         Scanner sc = new Scanner(System.in);
+         String n = sc.next();
+         String m = sc.next();
+         char in[] = n.toCharArray();
+         char pre[] = m.toCharArray();
+         BT bt = new BT();
+         node root = bt.buildTree(in , pre , 0 , n.length()-1);
+
+         System.out.println("tree has been built ");
+         bt.printPostorder(root);
+     }
+
+     }
