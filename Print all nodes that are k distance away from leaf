@@ -1,0 +1,15 @@
+    void distanceKfromLeaf(Node node , boolean visited[] , int pathlen ,int path[], int k )
+    {
+        if (node == null)
+            return;
+        path[pathlen] = node.data;
+        visited[pathlen] = false;
+        pathlen++;
+        if(node.left==null && node.right==null && pathlen-k>0 && visited[pathlen-k-1]==false)
+        {
+            System.out.println(path[pathlen-k-1]);
+            visited[pathlen-k-1] = true;
+        }
+        distanceKfromLeaf(node.left , visited , pathlen , path , k);
+        distanceKfromLeaf(node.right , visited , pathlen , path , k);
+    }
