@@ -1,0 +1,50 @@
+/*
+Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function would be added by GfG's Online Judge.*/
+
+
+/*Complete The given function
+The Node class is as follows:
+class Node{
+    int data;
+    Node left,right;
+    
+    Node(int d)
+     {
+      data=d;
+      left=null;
+      right=null;
+    }
+}*/
+//import java.util.*;
+class GfG{
+    public  void printExtremeNode(Node root)
+      {
+        if(root==null)
+        return;
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        boolean flag = false;
+        while(!q.isEmpty())
+        {
+            int nodeCount = q.size();
+            int n = nodeCount;
+            while(n-->0)
+            {
+                Node node = q.peek();
+                if(node.left!=null)
+                  q.add(node.left);
+                if(node.right!=null)
+                  q.add(node.right);
+                q.remove();
+                if(flag==true && n == nodeCount-1)
+                System.out.print(node.data+" ");
+                if(flag==false && n==0)
+                System.out.print(node.data+" ");
+                
+            }
+            flag =!flag ;
+        }
+      }
+}
