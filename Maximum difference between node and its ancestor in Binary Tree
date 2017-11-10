@@ -1,0 +1,46 @@
+/*
+Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function would be added by GfG's Online Judge.*/
+
+
+/*  A Binary Tree node
+class Node
+{
+    int data;
+    Node left, right;
+    Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
+}
+Structure of Res class 
+class Res
+{
+	int r = Integer.MIN_VALUE;
+}*/
+class GfG
+{
+	int maxDiff(Node root)
+	{
+		 Res res = new Res();
+		 difference(root , res);
+		 return res.r;
+	}
+	
+	int difference(Node root , Res res)
+	{
+	    if(root==null)
+	    return Integer.MAX_VALUE;
+	    if(root.left==null && root.right==null)
+	    return root.data;
+	    int leftMin = difference(root.left , res);
+	    int rightMin = difference(root.right , res);
+	    int min = Math.min(leftMin , rightMin);
+	    int x = root.data - min ;
+	    if(x > res.r)
+	    res.r = x ;
+	    return Math.min(root.data , min);
+	}
+}
